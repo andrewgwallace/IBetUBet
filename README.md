@@ -16,4 +16,4 @@ A super tie is when both players guess the exact bet amount of the other player.
 
 #### Drawings
 
-![Initial playboard design](./IBetUBet_sketch.png)
+![Initial design](IBetUBet_Sketch.png)
