@@ -14,6 +14,10 @@ In the event of a tie, both players lose their bet amount to the jackpot, giving
 ## Super-Tie
 A super tie is when both players guess the exact bet amount of the other player. In these rare cases, they each win double their bet amount and the jackpot doubles as well. Sequential super-ties result in a multiplier; players win triple and the jackpot triples, and so on.
 
+#### Drawings
 
-Future Game Features:
+![Initial playboard design](/misc/IBetUBet_sketch.png)
+
+
+#### Future Game Features:
 Should the game end 5-to-4, the loser has the option of "Betting it all" (the remainder of their points) to try get it to a tie game in the 10th round. If they win, both players enter "Sudden Death". The winner of the final round wins the jackpot and all the remaining points of their opponent.
