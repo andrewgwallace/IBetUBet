@@ -1,52 +1,90 @@
-// Required variables to be provided by user
+let p1 = "Andrew";
+let p2 = "Computer";
+let p1Bet = 4 ;
+let p1Guess = 7;
+let p2Bet = 5;
+let p2Guess = 9;
+let p1Diff = Math.abs(p1Guess - p2Bet);
+let p2Diff = Math.abs(p2Guess - p1Bet);
+let tie = false;
+let superTie = false
+let superTieCount = 0;
 
-p1Name // String
-p2Name  // String
-p1Bet // Number between 1 and 10
-p1Guess  // Number between 1 and 10
-p2Bet // Number between 1 and 10
-p2p1Guess // Number between 1 and 10
-
-// Required variables by game (to use in functions and also pull from DOM.
-
-round // Numbe starting at 1
-p1Points // Number starting at 50
-p2Points // Number starting at 50
-jackpot // Number starting at 100
-p1Multiplier // Number betwen 1 and 3 to multiply bet amount by
-p2Multiplier // Number betwen 1 and 3 to multiply bet amount by
-winnerDifference // Difference winner of round was to opponent's bet
-roundDifference // Total diffence that is added to the jackpot
-p1RoundsWon // Number of rounds won
-p2RoundsWon // Number of rounds won
-gameWinner // Winner of game and jackpot
-roundWinnder // Winner of round. Increases round count by one of round winner.
-scoreboard // DIV element for insertion of style tags to winner/loser (green/red) appropriate style tag to.
-jackpot // number
-tie // Boolean. Round count goes up by one. subtractPoints to both players
-superTie // Boolean. If true, award both players double their bet amount. Double jackpot amount. Set
-newGame // Alerts players asking "Are you sure?". If yes, resets the game and clears all elements, if not, goes away.
-goButton // event listener that calls the playRound function.
+let round = 1;
+let p1Points = 50;
+let p2Points = 50;
+let jackpot = 100;
+let p1Multiplier = 3 // 1, 2, or 3
+let p2Multiplier = 2 // 1, 2, or 3
 
 
-//Local storage used to maintain current state of game including points, jackpot, round, and names.
+let p1RoundsWon = 0;
+let p2RoundsWon = 0;
+let gameWinner = '';
 
+let scoreboard = document.querySelector('.scoreboard');
 
-// Required Functions
+function newGame() {
 
-roundReveal // Reveals the winner of the round.
-hideNumbers  // Hides a players numbers after they have entered them both in and clicked the lock-in button.
-subtractPoints // Subtract bet amount from player who is not closest. If tie, subtract from both but not multiplier. player points - (multiplier == 1 * bet amount)
-addPoints // Adds points (minus difference, times their multiplier) to winner.
-findClosest // Determine who was closest to the other player's guess.
-findDifference // Calculate difference each player was to the other player's guess
-isNumber // Determines if the player enters a number. If not an alert is displayed or a color signifies incorrect entry
-availableMultiplier // Determines what multiplier a player can use based on number of points they have.
-revealDelay // delays the reveal of the winner of the round.
-playRound // Checks if both players have locked in their numbers. If true, runs other functions above in approximately this order: findClosest, findDifference,
+}
 
+function playRound () {
+  getBetsandGuesses();
+  findRoundWinner();
+}
 
-// DOM Functions
+function findRoundWinner() {
+  if (p1Diff < p2Diff) {
+    console.log(`${p1} wins with a difference of ${p1Diff}`);
+    p1RoundsWon++;
+    round++;
+    superTieCount = 0;
+    p1Points += (p2Bet * p2Multiplier) - (p1Multiplier * p1Diff);
+    p2Points -= p2Bet * p2Multiplier;
+    jackpot += p1Multiplier * p1Diff;
+    // isGameOver();
+  }
+  else if (p1Diff > p2Diff) {
+    console.log(`${p2} wins with a difference of ${p2Diff}`);
+    p2RoundsWon++;
+    rounds++;
+    superTieCount = 0;
+    p2Points += (p1Bet * p1Multipler) - (p2Multiplier * p2Diff);
+    p1Points -= p1bet * p1Multiplier;
+    jackpot += p2Multiplier * p2Diff;
+    // isGameOver();
+  } else if ( p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
+    console.log("Super Tie!");
+    superTieCount++;
+    p1Points += (p1Bet * p1Multiplier) * superTieCount;
+    p2Points += (p2Bet * p2Multiplier) * superTieCount;
+    rounds++;
+  } else {
+    console.log("Tie round");
+    p1Points -= p1bet * p1Multiplier;
+    p2points -= p2bet * p2Multiplier;
+    jackpot += (p1bet * p1Multiplier) + (p2bet * p2Multiplier);
+  }
+  // isGameOver();
+}
 
-// Clear boxes
-//
+function isGameOver () {
+  if (p1RoundsWon > 5 ) {
+    console.log("Player 1 Wins the Game!");
+  } else if (p2RoundsWon > 5) {
+    console.log("Player 2 Wins the Game!");
+  } else {
+    findRoundWinner();
+    playRound();
+  }
+}
+
+function getBetsandGuesses () {
+  p1Bet = prompt("What is your bet, player 1?");
+  p1Guess = prompt("And what is your guess, P1?");
+  p2Bet = prompt("What is your bet, player 2?");
+  p2Guess = prompt("And what is your guess, P2?");
+  findRoundWinner();
+}
+
+findRoundWinner();
