@@ -4,7 +4,7 @@ I BET U BET is a "simple" game of chance that is truly based on luck, not skill.
 
 ## Rules of Play
 
-There are ten rounds in a game. If a player loses all their points or wins the majority of the rounds, the game ends.
+There are ten rounds in a game. If a player goes under ten points or wins the majority of the rounds, the game ends.
 
 Whichever player is closest to the guessing the other players bet amount wins the round, winning the opponent's bet amount minus the difference times their selected multiplier. The jackpot is raised by the total difference amount in each round.
 
