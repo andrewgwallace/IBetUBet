@@ -8,22 +8,25 @@ let onePlayer = document.querySelector('input[name="p1Name"]');
 let twoPlayer = document.querySelector('input[name="p2Name"]');
 let startButton = document.querySelector('#start');
 let isReady = false;
+startButton.disabled = true;
 
-onePlayer.addEventListener('change', changeStartText);
-twoPlayer.addEventListener('change', changeStartText);
-startButton.addEventListener('click', checkReady);
+onePlayer.addEventListener('change', checkReady);
+twoPlayer.addEventListener('change', checkReady);
 
 function checkReady() {
-
-}
-
-function changeStartText() {
-  if (onePlayer.value !== '' && twoPlayer.value !== '') {
+  if (onePlayer.value === '' && twoPlayer.value !== '') {
+    onePlayer.value = twoPlayer.value;
+    twoPlayer.value = '';
+    startButton.disabled = false;
+    startButton.innerHTML = "Let's Play!";
+  } else if (onePlayer.value !== '' && twoPlayer.value !== '') {
+    startButton.disabled = false;
     startButton.innerHTML = "2 Player Start!";
   } else if (onePlayer.value !== '' && twoPlayer.value === '') {
+    startButton.disabled = false;
     startButton.innerHTML = "Let's Play!";
   } else {
-      startButton.innerHTML = "Enter player name(s)"
+      startButton.innerHTML = "Enter player name(s)";
   }
 }
 
