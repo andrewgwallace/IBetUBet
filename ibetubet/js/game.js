@@ -3,8 +3,8 @@
 let p1 = '';
 let p2 = '';
 let p1Bet;
-let p1Guess;
 let p2Bet;
+let p1Guess;
 let p2Guess;
 let p1Diff = Math.abs(p1Guess - p2Bet);
 let p2Diff = Math.abs(p2Guess - p1Bet);
@@ -14,8 +14,6 @@ let round = 1;
 let p1Points = 50;
 let p2Points = 50;
 let jackpot = 100;
-let p1Multiplier; // 1, 2, or 3
-let p2Multiplier; // 1, 2, or 3
 let p1RoundsWon = 0;
 let p2RoundsWon = 0;
 let gameWinner = '';
@@ -76,11 +74,21 @@ function isGameOver () {
   }
 }
 
-function getBetsandGuesses () {
-  p1Bet = prompt("What is your bet, player 1?");
-  p1Guess = prompt("And what is your guess, P1?");
-  p2Bet = prompt("What is your bet, player 2?");
-  p2Guess = prompt("And what is your guess, P2?");
-  findRoundWinner();
-}
+
+// function getBetsandGuesses () {
+//   let p1Bet = prompt("What is your bet, player 1?");
+//   let p1Guess = prompt("And what is your guess, P1?");
+//   let p2Bet = prompt("What is your bet, player 2?");
+//   let p2Guess = prompt("And what is your guess, P2?");
+//   findRoundWinner();
+// }
+
+//LIMIT LENGTH OF FIELD ENTRY IN GAME.HTML
+  // function entryLimit (event, entry) {
+  //   let numbox = document.querySelector('.numbox')
+  //   entry = event.target.innerHTML
+  //   if (entry.length <= 1 && event.which !== 8) {
+  //       document.keydown = false;
+  //   }
+  // }
 // Local storage functionality to maintain game state
