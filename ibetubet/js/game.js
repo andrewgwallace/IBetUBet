@@ -74,15 +74,6 @@ function isGameOver () {
   }
 }
 
-
-// function getBetsandGuesses () {
-//   let p1Bet = prompt("What is your bet, player 1?");
-//   let p1Guess = prompt("And what is your guess, P1?");
-//   let p2Bet = prompt("What is your bet, player 2?");
-//   let p2Guess = prompt("And what is your guess, P2?");
-//   findRoundWinner();
-// }
-
 //LIMIT LENGTH OF FIELD ENTRY IN GAME.HTML
   // function entryLimit (event, entry) {
   //   let numbox = document.querySelector('.numbox')
