@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let imported = document.createElement('script');
   imported.src = 'js/game.js';
+  document.head.appendChild(imported);
 
   // Put index.html JS below this line.
   let onePlayer = document.querySelector('input[name="p1Name"]');
@@ -47,15 +48,23 @@ document.addEventListener('DOMContentLoaded', function() {
   let p2Multiplier = document.querySelector('input[name="p2multipler"]');
 
 
+  // function entryLimit (event, entry) {
+  //   let numbox = document.querySelector('.numbox')
+  //   entry = event.target.innerHTML
+  //   if (entry.length <= 1 && event.which !== 8) {
+  //       document.keydown = false;
+  //   }
+  // }
+
   function onClick(event) {
     let number = event.target.innerHTML;
     p1Bet.value = number;
-    console.log(`You clicked ${event.target}`);
+    // console.log(`You clicked ${event.target}`);
   }
 
   numButtons.addEventListener('click', onClick);
   // window.addEventListener('click', onClick);
-  document.head.appendChild(imported);
+
 
   //Disable other keyboard input except numbers and backspace
   document.onkeydown = function(event) {
@@ -68,4 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   }
+
+
+
 });
