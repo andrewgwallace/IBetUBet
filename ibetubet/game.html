@@ -20,19 +20,17 @@
       </p>
     </div>
     <div>
-      <form class="p1bet" action="index.html" method="post">
-        <input class="numbox" type="text" name="p1bet" value="">
+      <form class="p1play" action="index.html" method="post">
+        <label for="p1bet">Bet</label>
+        <input class="numbox" type="number" name="p1bet" min="1" max="9">
+        <label for="p1guess">Guess</label>
+        <input class="numbox" type="number" name="p1guess" min="1" max="9">
       </form>
     </div>
-    <div>
-      <form class="p1guess" action="index.html" method="post">
-        <input class="numbox" type="text" name="p1guess" value="">
-      </form>
-    </div>
-    <select class="p1multiplier" name="">
-      <option value="1">1x</option>
-      <option value="2">2x</option>
-      <option value="3">3x</option>
+    <select class="p1multiplier" type="number">
+      <option value=1>1x</option>
+      <option value=2>2x</option>
+      <option value=3>3x</option>
     </select>
     <button type="button" name="p1ready">Ready</button>
 
@@ -57,17 +55,15 @@
     </div>
 
     <!-- P2 Side -->
-    <div class="p2bet numbox">
-      <form class="p2bet" action="index.html" method="post">
-        <input class="numbox" type="text" name="p2bet" value="">
+    <div>
+      <form class="p2play" action="index.html" method="post">
+        <label for="p2bet">Bet</label>
+        <input class="numbox" type="number" name="p2bet" min="1" max="9">
+        <label for="p2guess">Guess</label>
+        <input class="numbox" type="number" name="p2guess" min="1" max="9">
       </form>
     </div>
-    <div class="p2guess numbox">
-      <form class="p2guess" action="index.html" method="post">
-        <input class="numbox" type="text" name="p2guess" value="">
-      </form>
-    </div>
-    <select class="p2multiplier" name="">
+    <select class="p2multiplier" type="number">
       <option value="1">1x</option>
       <option value="2">2x</option>
       <option value="3">3x</option>

@@ -1,15 +1,15 @@
 // DECLARATIONS
 
-let p1 = '';
-let p2 = '';
+let p1 = 'Player 1';
+let p2 = 'Player 2';
 let p1Bet;
 let p2Bet;
 let p1Guess;
 let p2Guess;
 let p1Multiplier;
 let p2Multiplier;
-let p1Diff = Math.abs(p1Guess - p2Bet);
-let p2Diff = Math.abs(p2Guess - p1Bet);
+let p1Diff;
+let p2Diff;
 let superTieCount = 0;
 
 let round = 1;
@@ -30,17 +30,17 @@ let p1Score = document.querySelector('.p1points');
 let p2Score = document.querySelector('.p2points');
 p1Score.innerHTML = `Points: ${p1Points}`;
 p2Score.innerHTML = `Points: ${p2Points}`;
-const p1BetBox = document.querySelector('input[name="p1bet"]');
-const p1GuessBox = document.querySelector('input[name="p1guess"]');
+const p1BetBox = document.querySelector('[name="p1bet"]');
+const p1GuessBox = document.querySelector('[name="p1guess"]');
 const p1MultiplierBox = document.querySelector('.p1multiplier');
 let p1Ready = document.querySelector('[name="p1ready"]');
-const p2BetBox = document.querySelector('input[name="p2bet"]');
-const p2GuessBox = document.querySelector('[name="p2ready"]')
+const p2BetBox = document.querySelector('[name="p2bet"]');
+const p2GuessBox = document.querySelector('[name="p2guess"]')
 const p2MultiplierBox = document.querySelector('.p2multiplier')
 let p2Ready = document.querySelector('[name="p2ready"]');
 let numbox;
 
-document.addEventListener('DOMContentLoaded', function() {
+// document.addEventListener('DOMContentLoaded', function() {
 // GAME FUNCTIONALITY
 function targetClick(event) {
   if (event.target.className.includes('numbox')) {
@@ -53,9 +53,9 @@ function targetClick(event) {
   if (event.target.name === 'p1ready') {
     // console.log("AWESOME!");
     event.preventDefault();
-    p1Bet = p1BetBox.value;
-    p1Guess = p1GuessBox.value;
-    p1Multiplier = p1MultiplierBox.value;
+    p1Bet = parseFloat(p1BetBox.value);
+    p1Guess = parseFloat(p1GuessBox.value);
+    p1Multiplier = parseFloat(p1MultiplierBox.value);
     p1BetBox.value = '';
     p1GuessBox.value = '';
     p1Ready.disabled = true;
@@ -63,9 +63,9 @@ function targetClick(event) {
   if (event.target.name === 'p2ready') {
     // console.log("AWESOME!");
     event.preventDefault();
-    p2Bet = p1BetBox.value;
-    p2Guess = p1GuessBox.value;
-    p2Multiplier = p1MultiplierBox.value;
+    p2Bet = parseFloat(p2BetBox.value);
+    p2Guess = parseFloat(p2GuessBox.value);
+    p2Multiplier = parseFloat(p2MultiplierBox.value);
     p2BetBox.value = '';
     p2GuessBox.value = '';
     p2Ready.disabled = true;
@@ -83,6 +83,8 @@ function playRound () {
 }
 
 function findRoundWinner() {
+  let p1Diff = Math.abs(p1Guess - p2Bet);
+  let p2Diff = Math.abs(p2Guess - p1Bet);
   if (p1Diff < p2Diff) {
     console.log(`${p1} wins with a difference of ${p1Diff}`);
     p1RoundsWon++;
@@ -96,10 +98,10 @@ function findRoundWinner() {
   else if (p1Diff > p2Diff) {
     console.log(`${p2} wins with a difference of ${p2Diff}`);
     p2RoundsWon++;
-    rounds++;
+    round++;
     superTieCount = 0;
     p2Points += (p1Bet * p1Multipler) - (p2Multiplier * p2Diff);
-    p1Points -= p1bet * p1Multiplier;
+    p1Points -= p1Bet * p1Multiplier;
     jackpot += p2Multiplier * p2Diff;
     // isGameOver();
   } else if ( p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
@@ -107,12 +109,12 @@ function findRoundWinner() {
     superTieCount++;
     p1Points += (p1Bet * p1Multiplier) * superTieCount;
     p2Points += (p2Bet * p2Multiplier) * superTieCount;
-    rounds++;
+    round++;
   } else {
     console.log("Tie round");
-    p1Points -= p1bet * p1Multiplier;
-    p2points -= p2bet * p2Multiplier;
-    jackpot += (p1bet * p1Multiplier) + (p2bet * p2Multiplier);
+    p1Points -= p1Bet * p1Multiplier;
+    p2points -= p2Bet * p2Multiplier;
+    jackpot += (p1Bet * p1Multiplier) + (p2Bet * p2Multiplier);
   }
   // isGameOver();
 }
@@ -129,6 +131,10 @@ function isGameOver () {
   }
 }
 
+
+function showResults () {
+  
+}
   // function onGoClick (event) {
   //   //check that both ready buttons are disabled
   //   // if yes, run roundWinner function (which should include timeout)
@@ -150,4 +156,4 @@ function disableKeys() {
 }
 
 disableKeys();
-});
+// });
