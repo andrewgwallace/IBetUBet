@@ -11,6 +11,7 @@ let p2Multiplier;
 let p1Diff;
 let p2Diff;
 let superTieCount = 0;
+let superTieMultiplier = 2;
 
 let round = 1;
 let p1Points = 50;
@@ -28,8 +29,8 @@ let scoreboard = document.querySelector('.scoreboard');
 const numButtons = document.querySelector('.numbers');
 let p1Score = document.querySelector('.p1points');
 let p2Score = document.querySelector('.p2points');
-p1Score.innerHTML = `Points: ${p1Points}`;
-p2Score.innerHTML = `Points: ${p2Points}`;
+p1Score = `Points: ${p1Points}`;
+p2Score = `Points: ${p2Points}`;
 const p1BetBox = document.querySelector('[name="p1bet"]');
 const p1GuessBox = document.querySelector('[name="p1guess"]');
 const p1MultiplierBox = document.querySelector('.p1multiplier');
@@ -78,8 +79,8 @@ document.addEventListener('click', targetClick);
 // }
 
 function playRound () {
-
   findRoundWinner();
+  showResults();
 }
 
 function findRoundWinner() {
@@ -89,7 +90,7 @@ function findRoundWinner() {
     console.log(`${p1} wins with a difference of ${p1Diff}`);
     p1RoundsWon++;
     round++;
-    superTieCount = 0;
+    superTieMultiplier = 2;
     p1Points += (p2Bet * p2Multiplier) - (p1Multiplier * p1Diff);
     p2Points -= p2Bet * p2Multiplier;
     jackpot += p1Multiplier * p1Diff;
@@ -99,16 +100,17 @@ function findRoundWinner() {
     console.log(`${p2} wins with a difference of ${p2Diff}`);
     p2RoundsWon++;
     round++;
-    superTieCount = 0;
+    superTieMultiplier = 2;
     p2Points += (p1Bet * p1Multipler) - (p2Multiplier * p2Diff);
     p1Points -= p1Bet * p1Multiplier;
     jackpot += p2Multiplier * p2Diff;
     // isGameOver();
   } else if ( p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
     console.log("Super Tie!");
-    superTieCount++;
-    p1Points += (p1Bet * p1Multiplier) * superTieCount;
-    p2Points += (p2Bet * p2Multiplier) * superTieCount;
+    p1Points += (p1Bet * p1Multiplier) * superTieMultiplier;
+    p2Points += (p2Bet * p2Multiplier) * superTieMultiplier;
+    jackpot += jackpot * superTieMultiplier;
+    superTieMultiplier++;
     round++;
   } else {
     console.log("Tie round");
@@ -116,9 +118,15 @@ function findRoundWinner() {
     p2points -= p2Bet * p2Multiplier;
     jackpot += (p1Bet * p1Multiplier) + (p2Bet * p2Multiplier);
   }
+  p1Ready.disabled = false;
+  p2Ready.disabled = false;
   // isGameOver();
 }
-
+function showResults () {
+ p1Score.innerHTML = p1Points;
+p2Score.innerHTML = p2Points;
+ // jackpot;
+}
 function isGameOver () {
   findRoundWinner();
   if (p1RoundsWon > 5 ) {
@@ -132,9 +140,7 @@ function isGameOver () {
 }
 
 
-function showResults () {
-  
-}
+
   // function onGoClick (event) {
   //   //check that both ready buttons are disabled
   //   // if yes, run roundWinner function (which should include timeout)
