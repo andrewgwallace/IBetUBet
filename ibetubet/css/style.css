@@ -1,21 +1,24 @@
 .scoreboard {
   border: 1px black solid;
   width: 50%;
-  height: 60px;
+  height: 40px;
 }
 
-.box {
-  border: solid #E7E7E7 1px;
+.p1row {
+  height: 20px;
+  border-bottom: 1px black;
+}
+
+.p2row {
+  height: 20px;
+}
+
+.scorebox {
+  border: 1px black;
   float: left;
   width: 20px;
   height: 20px;
 }
-
-/* .p1row {
-  width: 5%;
-  height: 20px;
-  border-bottom: 1px;
-} */
 
 .roundnrow {
   height: 20px;
@@ -24,11 +27,12 @@
   float: left;
 }
 
-
 .win {
-  backround-color: green;
+  background-color: green;
 }
-
 .lose {
   background-color: red;
+}
+.tie {
+  background-color: yellow;
 }
