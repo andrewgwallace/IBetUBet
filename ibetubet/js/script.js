@@ -42,6 +42,8 @@ let p2Ready = document.querySelector('[name="p2ready"]');
 let playButton = document.querySelector('[name="play"]');
 winnerBox = document.querySelector('.winner');
 let roundWinner;
+let roundDisplay = document.querySelector('.round');
+roundDisplay.innerHTML = `Round: ${round}`;
 let numbox;
 
 // document.addEventListener('DOMContentLoaded', function() {
@@ -90,6 +92,8 @@ document.addEventListener('click', targetClick);
 function playGame () {
   findRoundWinner();
   showResults();
+  //insert timeout
+  // isGameOver();
 }
 
 function findRoundWinner() {
@@ -97,20 +101,18 @@ function findRoundWinner() {
   let p2Diff = Math.abs(p2Guess - p1Bet);
   if (p1Diff < p2Diff) {
     console.log(`${p1} wins with a difference of ${p1Diff}`);
-    roundWinner = "Player 1";
     p1RoundsWon++;
-    round++;
     superTieMultiplier = 2;
     p1Points += (p2Bet * p2Multiplier) - (p1Multiplier * p1Diff);
     p2Points -= p2Bet * p2Multiplier;
     jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
+    roundWinner = "Player 1";
     // isGameOver();
   }
   else if (p1Diff > p2Diff) {
     console.log(`${p2} wins with a difference of ${p2Diff}`);
     roundWinner = "Player 2";
     p2RoundsWon++;
-    round++;
     superTieMultiplier = 2;
     p2Points += (p1Bet * p1Multiplier) - (p2Multiplier * p2Diff);
     p1Points -= p1Bet * p1Multiplier;
@@ -118,13 +120,14 @@ function findRoundWinner() {
     // isGameOver();
   } else if ( p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
     console.log("Super Tie!");
+    roundWinner = 'SUPER TIE!!!';
     p1Points += (p1Bet * p1Multiplier) * superTieMultiplier;
     p2Points += (p2Bet * p2Multiplier) * superTieMultiplier;
     jackpot = jackpot * superTieMultiplier;
     superTieMultiplier++;
-    round++;
   } else {
     console.log("Tie round");
+    roundWinner = "TIE";
     p1Points -= p1Bet * p1Multiplier;
     p2Points -= p2Bet * p2Multiplier;
     jackpot += (p1Bet * p1Multiplier) + (p2Bet * p2Multiplier);
@@ -139,6 +142,7 @@ function showResults() {
   p1Score.innerHTML = `Points: ${p1Points}`;
   p2Score.innerHTML = `Points: ${p2Points}`;
   jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
+  roundDisplay.innerHTML = `Round: ${round+=1}`
 }
 
 
@@ -148,9 +152,10 @@ function isGameOver () {
     gameWinner = p1;
     console.log(`${p1} Wins the Game!`);
   } else if (p2RoundsWon > 5) {
+    gameWinner = p2;
     console.log(`${p2} Wins the Game!`);
   } else {
-    playRound();
+    round+=1;
   }
 }
 
