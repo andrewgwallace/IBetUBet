@@ -40,6 +40,8 @@ const p2GuessBox = document.querySelector('[name="p2guess"]')
 const p2MultiplierBox = document.querySelector('.p2multiplier')
 let p2Ready = document.querySelector('[name="p2ready"]');
 let playButton = document.querySelector('[name="play"]');
+winnerBox = document.querySelector('.winner');
+let roundWinner;
 let numbox;
 
 // document.addEventListener('DOMContentLoaded', function() {
@@ -95,6 +97,7 @@ function findRoundWinner() {
   let p2Diff = Math.abs(p2Guess - p1Bet);
   if (p1Diff < p2Diff) {
     console.log(`${p1} wins with a difference of ${p1Diff}`);
+    roundWinner = "Player 1";
     p1RoundsWon++;
     round++;
     superTieMultiplier = 2;
@@ -105,6 +108,7 @@ function findRoundWinner() {
   }
   else if (p1Diff > p2Diff) {
     console.log(`${p2} wins with a difference of ${p2Diff}`);
+    roundWinner = "Player 2";
     p2RoundsWon++;
     round++;
     superTieMultiplier = 2;
@@ -130,10 +134,11 @@ function findRoundWinner() {
   // isGameOver();
 }
 
-function showResults () {
- p1Score.innerHTML = `Points: ${p1Points}`;
- p2Score.innerHTML = `Points: ${p2Points}`;
- jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
+function showResults() {
+  winnerBox.innerHTML = `Round ${round} winner: ${roundWinner}`;
+  p1Score.innerHTML = `Points: ${p1Points}`;
+  p2Score.innerHTML = `Points: ${p2Points}`;
+  jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
 }
 
 
