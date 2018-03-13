@@ -46,6 +46,7 @@ let roundWinner;
 let roundDisplay = document.querySelector('.round');
 roundDisplay.innerHTML = `Round: ${round}`;
 let numbox;
+// p1row = document.querySelector('.p1row');
 
 // document.addEventListener('DOMContentLoaded', function() {
 // GAME FUNCTIONALITY
@@ -93,6 +94,7 @@ document.addEventListener('click', targetClick);
 function playGame () {
   findRoundWinner();
   showResults();
+  scoreBoard();
   //insert timeout
   isGameOver();
 }
@@ -160,6 +162,24 @@ function isGameOver () {
   }
 }
 
+let p1Row = document.querySelector('.p1row');
+let scoreBox = document.createElement('div');
+scoreBox.className = 'box'
+
+  function scoreBoard () {
+    for (let i = 1; i <= 3; i++) {
+      if (roundWinner === p1) {
+        p1Row.appendChild(scoreBox).style.backgroundColor = 'green'
+        p2Row.appendChild(scoreBox).style.backgroundColor = 'red'
+      } else if (roundWinner === p2) {
+        p1Row.appendChild(scoreBox).style.backgroundColor = 'red'
+        p1Row.appendChild(scoreBox).style.backgroundColor = 'green'
+      } else {
+        p1Row.appendChild(scoreBox).style.backgroundColor = 'yellow'
+        p1Row.appendChild(scoreBox).style.backgroundColor = 'yellow'
+      }
+    }
+  }
   // function onGoClick (event) {
   //   //check that both ready buttons are disabled
   //   // if yes, run roundWinner function (which should include timeout)
