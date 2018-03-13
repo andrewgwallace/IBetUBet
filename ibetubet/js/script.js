@@ -41,6 +41,7 @@ const p2MultiplierBox = document.querySelector('.p2multiplier')
 let p2Ready = document.querySelector('[name="p2ready"]');
 let playButton = document.querySelector('[name="play"]');
 winnerBox = document.querySelector('.winner');
+let gameWinnerBox = document.querySelector('.gamewinner');
 let roundWinner;
 let roundDisplay = document.querySelector('.round');
 roundDisplay.innerHTML = `Round: ${round}`;
@@ -93,7 +94,7 @@ function playGame () {
   findRoundWinner();
   showResults();
   //insert timeout
-  // isGameOver();
+  isGameOver();
 }
 
 function findRoundWinner() {
@@ -147,13 +148,13 @@ function showResults() {
 
 
 function isGameOver () {
-  findRoundWinner();
+  // findRoundWinner();
   if (p1RoundsWon > 5 ) {
     gameWinner = p1;
-    console.log(`${p1} Wins the Game!`);
+    gameWinnerBox.innerHTML = `${p1} Wins the Game!`;
   } else if (p2RoundsWon > 5) {
     gameWinner = p2;
-    console.log(`${p2} Wins the Game!`);
+    gameWinnerBox.innerHTML = `${p2} Wins the Game!`;
   } else {
     round+=1;
   }
