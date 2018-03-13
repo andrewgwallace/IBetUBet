@@ -29,8 +29,8 @@ let scoreboard = document.querySelector('.scoreboard');
 const numButtons = document.querySelector('.numbers');
 let p1Score = document.querySelector('.p1points');
 let p2Score = document.querySelector('.p2points');
-p1Score = `Points: ${p1Points}`;
-p2Score = `Points: ${p2Points}`;
+p1Score.innerHTML = `Points: ${p1Points}`;
+p2Score.innerHTML = `Points: ${p2Points}`;
 const p1BetBox = document.querySelector('[name="p1bet"]');
 const p1GuessBox = document.querySelector('[name="p1guess"]');
 const p1MultiplierBox = document.querySelector('.p1multiplier');
@@ -39,11 +39,13 @@ const p2BetBox = document.querySelector('[name="p2bet"]');
 const p2GuessBox = document.querySelector('[name="p2guess"]')
 const p2MultiplierBox = document.querySelector('.p2multiplier')
 let p2Ready = document.querySelector('[name="p2ready"]');
+let playButton = document.querySelector('[name="play"]');
 let numbox;
 
 // document.addEventListener('DOMContentLoaded', function() {
 // GAME FUNCTIONALITY
 function targetClick(event) {
+  playButton.disabled = true;
   if (event.target.className.includes('numbox')) {
     numbox = event.target;
   }
@@ -71,14 +73,19 @@ function targetClick(event) {
     p2GuessBox.value = '';
     p2Ready.disabled = true;
   }
+    if (p1Ready.disabled === true && p2Ready.disabled === true) {
+      playButton.disabled = false;
+    }
+
 }
 
+playButton.addEventListener('click', playGame);
 document.addEventListener('click', targetClick);
 // function newGame() {
 //
 // }
 
-function playRound () {
+function playGame () {
   findRoundWinner();
   showResults();
 }
@@ -93,7 +100,7 @@ function findRoundWinner() {
     superTieMultiplier = 2;
     p1Points += (p2Bet * p2Multiplier) - (p1Multiplier * p1Diff);
     p2Points -= p2Bet * p2Multiplier;
-    jackpot += p1Multiplier * p1Diff;
+    jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
     // isGameOver();
   }
   else if (p1Diff > p2Diff) {
@@ -101,32 +108,35 @@ function findRoundWinner() {
     p2RoundsWon++;
     round++;
     superTieMultiplier = 2;
-    p2Points += (p1Bet * p1Multipler) - (p2Multiplier * p2Diff);
+    p2Points += (p1Bet * p1Multiplier) - (p2Multiplier * p2Diff);
     p1Points -= p1Bet * p1Multiplier;
-    jackpot += p2Multiplier * p2Diff;
+    jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
     // isGameOver();
   } else if ( p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
     console.log("Super Tie!");
     p1Points += (p1Bet * p1Multiplier) * superTieMultiplier;
     p2Points += (p2Bet * p2Multiplier) * superTieMultiplier;
-    jackpot += jackpot * superTieMultiplier;
+    jackpot = jackpot * superTieMultiplier;
     superTieMultiplier++;
     round++;
   } else {
     console.log("Tie round");
     p1Points -= p1Bet * p1Multiplier;
-    p2points -= p2Bet * p2Multiplier;
+    p2Points -= p2Bet * p2Multiplier;
     jackpot += (p1Bet * p1Multiplier) + (p2Bet * p2Multiplier);
   }
   p1Ready.disabled = false;
   p2Ready.disabled = false;
   // isGameOver();
 }
+
 function showResults () {
- p1Score.innerHTML = p1Points;
-p2Score.innerHTML = p2Points;
- // jackpot;
+ p1Score.innerHTML = `Points: ${p1Points}`;
+ p2Score.innerHTML = `Points: ${p2Points}`;
+ jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
 }
+
+
 function isGameOver () {
   findRoundWinner();
   if (p1RoundsWon > 5 ) {
@@ -138,8 +148,6 @@ function isGameOver () {
     playRound();
   }
 }
-
-
 
   // function onGoClick (event) {
   //   //check that both ready buttons are disabled
