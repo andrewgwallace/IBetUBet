@@ -1,7 +1,7 @@
 // DECLARATIONS
 
-let p1 = 'Player 1';
-let p2 = 'Player 2';
+let p1 = localStorage.getItem('p1');
+let p2 = localStorage.getItem('p2');
 let p1Bet;
 let p2Bet;
 let p1Guess;
@@ -12,7 +12,6 @@ let p1Diff;
 let p2Diff;
 let superTieCount = 0;
 let superTieMultiplier = 2;
-
 let round = 1;
 let p1Points = 50;
 let p2Points = 50;
@@ -20,6 +19,9 @@ let jackpot = 100;
 let p1RoundsWon = 0;
 let p2RoundsWon = 0;
 let gameWinner = '';
+let roundWinner;
+let numbox;
+let highScore;
 
 // DOM MANIPULATION
 
@@ -42,11 +44,18 @@ let p2Ready = document.querySelector('[name="p2ready"]');
 let playButton = document.querySelector('[name="play"]');
 winnerBox = document.querySelector('.winner');
 let gameWinnerBox = document.querySelector('.gamewinner');
-let roundWinner;
 let roundDisplay = document.querySelector('.round');
 roundDisplay.innerHTML = `Round: ${round}`;
-let numbox;
-// p1row = document.querySelector('.p1row');
+let p1Row = document.querySelector('.p1row');
+let p2Row = document.querySelector('.p2row');
+let loseBox = document.createElement('div');
+let winBox = document.createElement('div');
+let tieBox = document.createElement('div');
+let tieBox2 = document.createElement('div');
+loseBox.className = 'box lose';
+winBox.className = 'box win';
+tieBox.className = 'box tie';
+tieBox2.className = 'box tie';
 
 // document.addEventListener('DOMContentLoaded', function() {
 // GAME FUNCTIONALITY
@@ -79,24 +88,19 @@ function targetClick(event) {
     p2GuessBox.value = '';
     p2Ready.disabled = true;
   }
-    if (p1Ready.disabled === true && p2Ready.disabled === true) {
-      playButton.disabled = false;
-    }
-
+  if (p1Ready.disabled === true && p2Ready.disabled === true) {
+    playButton.disabled = false;
+  }
 }
 
 playButton.addEventListener('click', playGame);
 document.addEventListener('click', targetClick);
-// function newGame() {
-//
-// }
 
-function playGame () {
+function playGame() {
   findRoundWinner();
   isGameOver();
   scoreBoard();
   //insert timeout
-
 }
 
 function findRoundWinner() {
@@ -109,17 +113,16 @@ function findRoundWinner() {
     p1Points += (p2Bet * p2Multiplier) - (p1Multiplier * p1Diff);
     p2Points -= p2Bet * p2Multiplier;
     jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
-    roundWinner = "Player 1";
-  }
-  else if (p1Diff > p2Diff) {
+    roundWinner = p1;
+  } else if (p1Diff > p2Diff) {
     console.log(`${p2} wins with a difference of ${p2Diff}`);
-    roundWinner = "Player 2";
+    roundWinner = p2;
     p2RoundsWon++;
     superTieMultiplier = 2;
     p2Points += (p1Bet * p1Multiplier) - (p2Multiplier * p2Diff);
     p1Points -= p1Bet * p1Multiplier;
     jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
-  } else if ( p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
+  } else if (p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
     console.log("Super Tie!");
     roundWinner = 'SUPER TIE!!!';
     p1Points += (p1Bet * p1Multiplier) * superTieMultiplier;
@@ -149,48 +152,45 @@ function showResults() {
   roundDisplay.innerHTML = `Round: ${round+1}`
 }
 
-
-function isGameOver () {
-  if (p1RoundsWon > 5 || p2Points < 10 ) {
+function isGameOver() {
+  if (p1RoundsWon > 5 || p2Points < 10) {
     gameWinner = p1;
-    gameWinnerBox.innerHTML = `${p1} Wins the Game!`;
+    highScore = p1Points;
+    p1Points += jackpot;
+    p1Score.innerHTML = `Points: ${p1Points + jackpot}`;
+    gameWinnerBox.innerHTML = `${p1} Wins the pot!`;
+
   } else if (p2RoundsWon > 5 || p1Points < 10) {
     gameWinner = p2;
-    gameWinnerBox.innerHTML = `${p2} Wins the Game!`;
+    p2Points += jackpot;
+    highScore = p2Points;
+    p2Score.innerHTML = `Points: ${p2Points + jackpot}`;
+    gameWinnerBox.innerHTML = `${p2} Wins the pot!`;
   } else {
     showResults();
-    round+=1;
+    round += 1;
   }
 }
 
-let p1Row = document.querySelector('.p1row');
-let p2Row = document.querySelector('.p2row');
-let loseBox = document.createElement('div');
-loseBox.className = 'box lose';
-let winBox = document.createElement('div');
-winBox.className = 'box win';
-let tieBox = document.createElement('div');
-let tieBox2 = document.createElement('div');
-tieBox.className = 'box tie';
-tieBox2.className = 'box tie';
-
-  function scoreBoard () {
-      if (roundWinner === p1) {
-        p1Row.appendChild(winBox);
-        p2Row.appendChild(loseBox);
-      } else if (roundWinner === p2) {
-        p1Row.appendChild(loseBox);
-        p2Row.appendChild(winBox);
-      } else {
-        p1Row.appendChild(tieBox);
-        p2Row.appendChild(tieBox2);
-      }
-    }
+function scoreBoard() {
+  if (roundWinner === p1) {
+    p1Row.appendChild(winBox);
+    p2Row.appendChild(loseBox);
+  } else if (roundWinner === p2) {
+    p1Row.appendChild(loseBox);
+    p2Row.appendChild(winBox);
+  } else {
+    p1Row.appendChild(tieBox);
+    p2Row.appendChild(tieBox2);
+  }
+}
 
 // LOCAL STORAGE //
-p1scores = p1Row.querySelectorAll('.box');
-p2scores = p2Row.querySelectorAll('.box');
 
+function leaderBoard() {
+  localStorage.setItem('gameWinner', gameWinner);
+  localStorage.setItem('highScore', highScore);
+}
 
 
 //Disable other keyboard input except numbers and backspace

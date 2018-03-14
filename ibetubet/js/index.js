@@ -1,19 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
-
-let onePlayer = document.querySelector('input[name="p1Name"]');
-let twoPlayer = document.querySelector('input[name="p2Name"]');
+let onePlayer = document.querySelector('input[name="p1name"]');
+let twoPlayer = document.querySelector('input[name="p2name"]');
 let startButton = document.querySelector('#start');
-let continueButton = document.querySelector('#continue');
 startButton.disabled = true;
-continueButton.disabled = true;
 
+
+document.addEventListener('DOMContentLoaded', function() {
 onePlayer.addEventListener('change', checkReady);
 twoPlayer.addEventListener('change', checkReady);
-startButton.addEventListener('click', startGame);
-
-function startGame () {
-
-}
 
 function checkReady() {
   if (onePlayer.value === '' && twoPlayer.value !== '') {
@@ -31,6 +24,8 @@ function checkReady() {
     startButton.disabled = true;
     startButton.innerHTML = "Enter player name(s)";
   }
+  localStorage.setItem('p1', onePlayer.value);
+  localStorage.setItem('p2', twoPlayer.value);
 }
 
 });
