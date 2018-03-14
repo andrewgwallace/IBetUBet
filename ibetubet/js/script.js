@@ -166,13 +166,13 @@ function isGameOver () {
 let p1Row = document.querySelector('.p1row');
 let p2Row = document.querySelector('.p2row');
 let loseBox = document.createElement('div');
-loseBox.className = 'lose';
+loseBox.className = 'box lose';
 let winBox = document.createElement('div');
-winBox.className = 'win';
+winBox.className = 'box win';
 let tieBox = document.createElement('div');
 let tieBox2 = document.createElement('div');
-tieBox.className = 'tie';
-tieBox2.className = 'tie';
+tieBox.className = 'box tie';
+tieBox2.className = 'box tie';
 
   function scoreBoard () {
       if (roundWinner === p1) {
@@ -186,6 +186,11 @@ tieBox2.className = 'tie';
         p2Row.appendChild(tieBox2);
       }
     }
+
+// LOCAL STORAGE //
+p1scores = p1Row.querySelectorAll('.box');
+p2scores = p2Row.querySelectorAll('.box');
+
 
 
 //Disable other keyboard input except numbers and backspace
