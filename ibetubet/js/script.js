@@ -166,32 +166,28 @@ function isGameOver () {
 let p1Row = document.querySelector('.p1row');
 let p2Row = document.querySelector('.p2row');
 let p1Box = document.createElement('div');
+    p1Box.className = 'scorebox';
 let p2Box = document.createElement('div');
+    p1Box.className = 'scorebox';
 // let roundRow = document.querySelector('.roundrow');
 // let scoreBox = document.createElement('div');
 
   function scoreBoard () {
       if (roundWinner === p1) {
         p1Row.appendChild(p1Box);
-        p1Box.className = 'scorebox';
         p1Box.style.backgroundColor = 'green';
         p2Row.appendChild(p2Box);
-        p2Box.className = 'scorebox';
         p2Box.style.backgroundColor = 'red';
         // p2Row.appendChild(scoreBox).style.backgroundColor = 'red';
       } else if (roundWinner === p2) {
         p1Row.appendChild(p1Box);
-        p1Box.className = 'scorebox';
         p1Box.style.backgroundColor = 'red';
         p2Row.appendChild(p2Box);
-        p2Box.className = 'scorebox';
         p2Box.style.backgroundColor = 'green';
       } else {
         p1Row.appendChild(p1Box);
-        p1Box.className = 'scorebox';
         p1Box.style.backgroundColor = 'yellow';
         p2Row.appendChild(p2Box);
-        p2Box.className = 'scorebox';
         p2Box.style.backgroundColor = 'yellow';
       }
       // roundRow.appendChild(scoreBox);
