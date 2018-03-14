@@ -174,7 +174,6 @@ let tieBox2 = document.createElement('div');
 tieBox.className = 'tie';
 tieBox2.className = 'tie';
 
-
   function scoreBoard () {
       if (roundWinner === p1) {
         p1Row.appendChild(winBox);
