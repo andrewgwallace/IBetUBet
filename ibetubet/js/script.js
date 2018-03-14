@@ -159,41 +159,34 @@ function isGameOver () {
     gameWinnerBox.innerHTML = `${p2} Wins the Game!`;
   } else {
     showResults();
-  }
     round+=1;
+  }
 }
 
 let p1Row = document.querySelector('.p1row');
 let p2Row = document.querySelector('.p2row');
-let p1ScoreBox = document.createElement('div');
-let p2ScoreBox = document.createElement('div');
-let scoreBox = document.createElement('div');
-p1ScoreBox.innerHTML = '';
-p2ScoreBox.innerHTML = '';
-// let roundRow = document.querySelector('.roundrow');
-// let scoreBox = document.createElement('div');
+let loseBox = document.createElement('div');
+loseBox.className = 'lose';
+let winBox = document.createElement('div');
+winBox.className = 'win';
+let tieBox = document.createElement('div');
+let tieBox2 = document.createElement('div');
+tieBox.className = 'tie';
+tieBox2.className = 'tie';
 
 
   function scoreBoard () {
       if (roundWinner === p1) {
-        p1ScoreBox.className = 'win';
-        p2ScoreBox.className = 'lose';
+        p1Row.appendChild(winBox);
+        p2Row.appendChild(loseBox);
       } else if (roundWinner === p2) {
-        p1ScoreBox.className = 'win';
-        p2ScoreBox.className = 'lose';
+        p1Row.appendChild(loseBox);
+        p2Row.appendChild(winBox);
       } else {
-        p1ScoreBox.className = 'tie';
-        p2ScoreBox.className = 'tie';
+        p1Row.appendChild(tieBox);
+        p2Row.appendChild(tieBox2);
       }
-      p1Row.appendChild(p1ScoreBox);
-      p2Row.appendChild(p2ScoreBox);
     }
-
-  // function onGoClick (event) {
-  //   //check that both ready buttons are disabled
-  //   // if yes, run roundWinner function (which should include timeout)
-  // }
-
 
 
 //Disable other keyboard input except numbers and backspace
