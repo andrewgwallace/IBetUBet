@@ -110,7 +110,6 @@ function findRoundWinner() {
     p2Points -= p2Bet * p2Multiplier;
     jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
     roundWinner = "Player 1";
-    // isGameOver();
   }
   else if (p1Diff > p2Diff) {
     console.log(`${p2} wins with a difference of ${p2Diff}`);
@@ -120,7 +119,6 @@ function findRoundWinner() {
     p2Points += (p1Bet * p1Multiplier) - (p2Multiplier * p2Diff);
     p1Points -= p1Bet * p1Multiplier;
     jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
-    // isGameOver();
   } else if ( p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
     console.log("Super Tie!");
     roundWinner = 'SUPER TIE!!!';
@@ -137,20 +135,22 @@ function findRoundWinner() {
   }
   p1Ready.disabled = false;
   p2Ready.disabled = false;
-  // isGameOver();
 }
 
 function showResults() {
-  winnerBox.innerHTML = `Round ${round} winner: ${roundWinner}`;
+  if (round === 1) {
+    winnerBox.innerHTML = `Round 1 winner: ${roundWinner}`;
+  } else {
+    winnerBox.innerHTML = `Round ${round} winner: ${roundWinner}`;
+  }
   p1Score.innerHTML = `Points: ${p1Points}`;
   p2Score.innerHTML = `Points: ${p2Points}`;
   jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
-  roundDisplay.innerHTML = `Round: ${round+=1}`
+  roundDisplay.innerHTML = `Round: ${round+1}`
 }
 
 
 function isGameOver () {
-  // findRoundWinner();
   if (p1RoundsWon > 5 || p2Points < 10 ) {
     gameWinner = p1;
     gameWinnerBox.innerHTML = `${p1} Wins the Game!`;
@@ -159,8 +159,8 @@ function isGameOver () {
     gameWinnerBox.innerHTML = `${p2} Wins the Game!`;
   } else {
     showResults();
-    round+=1;
   }
+    round+=1;
 }
 
 let p1Row = document.querySelector('.p1row');
@@ -173,24 +173,20 @@ p2ScoreBox.innerHTML = '';
 // let roundRow = document.querySelector('.roundrow');
 // let scoreBox = document.createElement('div');
 
-  function scoreBoard (e) {
+
+  function scoreBoard () {
       if (roundWinner === p1) {
-        p1Row.appendChild(p1ScoreBox);
-        p1ScoreBox.innerHTML = '';
-        this.className = 'win';
-        p2Row.appendChild(scoreBox).style.backgroundColor = 'red';
+        p1ScoreBox.className = 'win';
+        p2ScoreBox.className = 'lose';
       } else if (roundWinner === p2) {
-        p1Row.appendChild(p1ScoreBox);
-        p1ScoreBox.className += ' lose';
-        p2Row.appendChild(p2ScoreBox);
-        p2ScoreBox.className += ' win';
+        p1ScoreBox.className = 'win';
+        p2ScoreBox.className = 'lose';
       } else {
-        p1Row.appendChild(p1ScoreBox);
-        p1ScoreBox.className += ' tie';
-        p2Row.appendChild(p2ScoreBox);
-        p2ScoreBox.className += ' tie';
+        p1ScoreBox.className = 'tie';
+        p2ScoreBox.className = 'tie';
       }
-      // roundRow.appendChild(scoreBox);
+      p1Row.appendChild(p1ScoreBox);
+      p2Row.appendChild(p2ScoreBox);
     }
 
   // function onGoClick (event) {
