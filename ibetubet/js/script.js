@@ -93,10 +93,10 @@ document.addEventListener('click', targetClick);
 
 function playGame () {
   findRoundWinner();
-  showResults();
+  isGameOver();
   scoreBoard();
   //insert timeout
-  isGameOver();
+
 }
 
 function findRoundWinner() {
@@ -151,13 +151,14 @@ function showResults() {
 
 function isGameOver () {
   // findRoundWinner();
-  if (p1RoundsWon > 5 ) {
+  if (p1RoundsWon > 5 || p2Points < 10 ) {
     gameWinner = p1;
     gameWinnerBox.innerHTML = `${p1} Wins the Game!`;
-  } else if (p2RoundsWon > 5) {
+  } else if (p2RoundsWon > 5 || p1Points < 10) {
     gameWinner = p2;
     gameWinnerBox.innerHTML = `${p2} Wins the Game!`;
   } else {
+    showResults();
     round+=1;
   }
 }
@@ -179,11 +180,19 @@ let p2Box = document.createElement('div');
         p2Box.style.backgroundColor = 'red';
         // p2Row.appendChild(scoreBox).style.backgroundColor = 'red';
       } else if (roundWinner === p2) {
-        p1Row.appendChild(scoreBox).style.backgroundColor = 'red';
-        p2Row.appendChild(scoreBox).style.backgroundColor = 'green'
+        p1Row.appendChild(p1Box);
+        p1Box.className = 'scorebox';
+        p1Box.style.backgroundColor = 'red';
+        p2Row.appendChild(p2Box);
+        p2Box.className = 'scorebox';
+        p2Box.style.backgroundColor = 'green';
       } else {
-        p1Row.appendChild(scoreBox).style.backgroundColor = 'yellow'
-        p2Row.appendChild(scoreBox).style.backgroundColor = 'yellow'
+        p1Row.appendChild(p1Box);
+        p1Box.className = 'scorebox';
+        p1Box.style.backgroundColor = 'yellow';
+        p2Row.appendChild(p2Box);
+        p2Box.className = 'scorebox';
+        p2Box.style.backgroundColor = 'yellow';
       }
       // roundRow.appendChild(scoreBox);
     }
