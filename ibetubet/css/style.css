@@ -5,20 +5,18 @@
 }
 
 .p1row {
-  height: 20px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 2px;
   width: 100%;
-  border-bottom: 1px black;
+  height: 20px;
+  /* border-bottom: 1px black; */
 }
 
 .p2row {
-  height: 20px;
-}
-
-.scorebox {
-  box-sizing: border-box;
-  border: 1px #5a5a5a;
-  float: left;
-  width: 20px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 2px;
   height: 20px;
 }
 
@@ -31,10 +29,15 @@
 
 .win {
   background-color: green;
+  height: 20px;
 }
+
 .lose {
   background-color: red;
+  height: 20px;
 }
+
 .tie {
   background-color: yellow;
+  height: 20px;
 }
