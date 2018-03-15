@@ -37,8 +37,8 @@ let pcPlay = function() {
 
 // DOM MANIPULATION
 
-document.querySelector('.p1name').innerHTML = p1;
-document.querySelector('.p2name').innerHTML = p2;
+document.querySelector('.p1name').innerHTML = `<h4>${p1}</h4>`;
+document.querySelector('.p2name').innerHTML = `<h4>${p2}</h4>`;
 let jackpotDisplay = document.querySelector('.jackpot');
 jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
 let scoreboard = document.querySelector('.scoreboard');

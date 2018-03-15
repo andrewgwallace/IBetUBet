@@ -2,6 +2,10 @@ h1, h2, h3 {
   font-family: 'Pacifico', cursive;
 }
 
+input:not([type]), input[type=text]:not(.browser-default) {
+  font-size: 32px;
+}
+
 .scoreboard {
   width: 80%;
   height: 60px;
