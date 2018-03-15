@@ -8,32 +8,63 @@
 </head>
 
 <body>
-  <h1>I Bet U Bet</h1>
+  <div class="container">
+    <div class="row">
 
-  <form action="index.html">
-    <input type="text" name="p1name" value="" placeholder="Player 1"><br>
-    <input type="text" name="p2name" value="" placeholder="Player 2"><br>
-    <a href="game.html">
-    <button id="start" type="button" name="start">Enter player name(s)</button></a>
-    <!-- <br>
-    <button id="continue" type="button" name="continue">Continue?</button> -->
-  </form>
+      <h1 class="center gameheader">I Bet U Bet</h1>
+    </div>
 
-  <h2>How to Play</h2>
-  <div class="card-panel">
-  <p class="flow-text">I BET U BET is a "simple" game of chance that is truly based on luck, not skill. Two players, each starting with fifty points, choose two numbers between 1 and 10. The first number is their bet, and the second number is their guess as to what theiropponent will bet. <br>
+    <div class="row">
 
-  There are ten rounds in a game, If a player goes under ten points, their opponent wins. If they win the majority of the rounds, they win the jackpot.<br>
+      <div class="col s12 m4 l2"></div>
+      <div class="col s12 m4 l8">
+        <div class="card center">
+          <div class="card-content">
+            <form action="index.html">
+              <input type="text" name="p1name" value="" placeholder="Player 1"><br>
+              <input type="text" name="p2name" value="" placeholder="Player 2 (optional)"><br>
+              <a href="game.html">
+            <button class="btn center" id="start" type="button" name="start">Enter player name(s)</button></a>
+            </form>
+          </div>
 
-  Whichever player is closest to the guessing the other players bet amount wins the round, winning the opponent's bet amount minus the difference times their selected multiplier. The jackpot is raised by the total difference amount in each round. <br>
+        </div>
 
-  <h2>Ties</h2>
-  In the event of a tie, both players lose their bet amount to the jackpot, giving them the opportunity to still win it back by the end of the game.<br>
+      </div>
+      <div class="col s12 m4 l2"></div>
 
-  <h2>Super-Tie</h2>
-  <p>A super tie is when both players guess the exact bet amount of the other player. In these rare cases, they each win double their bet amount and the jackpot doubles as well. Sequential super-ties result in a multiplier; players win triple and the jackpot triples, and so on.
-  </p>
-</div>
+
+      <div class="col s12 m6 center">
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m8">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">How To Play</span>
+            <p>Two players, each starting with fifty points, choose two numbers between 1 and 10. The first number is their bet, and the second number is their guess as to what their opponent will bet. There are ten rounds in a game, If a player goes under
+              ten points, their opponent wins. If they win the majority of the rounds, they win the jackpot. Whichever player is closest to the guessing the other players bet amount wins the round, winning the opponent's bet amount minus the difference
+              times their selected multiplier. The jackpot is raised by the total difference amount in each round. </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col s12 m4">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">Tie Rounds</span>
+            <p>In the event of a tie, both players lose their bet amount to the jackpot, giving them the opportunity to still win it back by the end of the game. Unless there is a...</p>
+            <h5>Super Tie!</h5>
+            <p>A super tie is when both players guess the exact bet amount of the other player. In these rare cases, they each win double their bet amount and the jackpot doubles as well. Sequential super-ties result in a multiplier; players win triple and
+              the jackpot triples, and so on.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>
