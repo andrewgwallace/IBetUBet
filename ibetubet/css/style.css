@@ -26,31 +26,31 @@
 }
 
 .win {
-  border: 2px white solid;
+  border: 2px black solid;
   border-radius: 4px;
   float: left;
-  background-color: green;
+  background-color: black;
   height: 20px;
   width: 10%;
 }
 
-.lose {
+/* .lose {
   border: 2px white solid;
   border-radius: 4px;
   float: left;
   background-color: red;
   height: 20px;
   width: 10%;
-}
+} */
 
-.tie {
-  border: 2px white solid;
+/* .tie {
+  border: 2px gray solid;
   border-radius: 4px;
   float: left;
-  background-color: yellow;
+  background-color: gray;
   height: 20px;
   width: 10%;
-}
+} */
 
 /* Materialize Styling Assignment */
 

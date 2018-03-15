@@ -47,13 +47,13 @@ let p1Score = document.querySelector('.p1points');
 let p2Score = document.querySelector('.p2points');
 p1Score.innerHTML = `Points: ${p1Points}`;
 p2Score.innerHTML = `Points: ${p2Points}`;
-const p1BetBox = document.querySelector('[name="p1bet"]');
-const p1GuessBox = document.querySelector('[name="p1guess"]');
-const p1MultiplierBox = document.querySelector('.p1multiplier');
+let p1BetBox = document.querySelector('[name="p1bet"]');
+let p1GuessBox = document.querySelector('[name="p1guess"]');
+let p1MultiplierBox = document.querySelector('.p1multiplier');
 let p1Ready = document.querySelector('[name="p1ready"]');
-const p2BetBox = document.querySelector('[name="p2bet"]');
-const p2GuessBox = document.querySelector('[name="p2guess"]')
-const p2MultiplierBox = document.querySelector('.p2multiplier')
+let p2BetBox = document.querySelector('[name="p2bet"]');
+let p2GuessBox = document.querySelector('[name="p2guess"]')
+let p2MultiplierBox = document.querySelector('.p2multiplier')
 let p2Ready = document.querySelector('[name="p2ready"]');
 let playButton = document.querySelector('[name="play"]');
 winnerBox = document.querySelector('.winner');
@@ -110,8 +110,22 @@ function targetClick(event) {
 playButton.addEventListener('click', playGame);
 document.addEventListener('click', targetClick);
 
+function getNumbers() {
+  if (p2 === "Computer") {
+    pcPlay();
+  } else { targetClick(event);
+    }
+}
+playButtonDisable();
+getNumbers();
+
+function isComputerPlaying() {
+  if (p2 === "Computer") {
+      p2Ready.disabled = true;
+  }
+}
+
 function playGame() {
-  pcPlay();
   findRoundWinner();
   showResults();
   scoreBoard();
@@ -149,17 +163,21 @@ function findRoundWinner() {
     jackpot += (p1Bet * p1Multiplier) + (p2Bet * p2Multiplier);
   }
   p1Ready.disabled = false;
-  p2Ready.disabled = false;
+  if (p2 === "Computer") {
+    return p2Ready.disabled = true;
+  } else {
+  return p2Ready.disabled = false;
+}
 }
 
 function showResults() {
   if (round === 1) {
-    winnerBox.innerHTML = `${p1} bet ${p1Bet} and guessed ${p1Guess}<br>
-                           ${p2} bet ${p2Bet} and guessed ${p2Guess}<br>
+    winnerBox.innerHTML = `${p1} was off by ${p1Diff}<br>
+                           ${p2} was off by ${p2Diff}<br>
                           Round 1 winner: ${roundWinner}`;
   } else {
-    winnerBox.innerHTML = `${p1} bet ${p1Bet} and guessed ${p1Guess}<br>
-                           ${p2} bet ${p2Bet} and guessed ${p2Guess}<br>
+    winnerBox.innerHTML = `${p1} was off by ${p1Diff}<br>
+                           ${p2} was off by ${p2Diff}<br>
                            Round ${round} winner: ${roundWinner}`;
   }
   p1Score.innerHTML = `Points: ${p1Points}`;
@@ -170,26 +188,27 @@ function showResults() {
 
 function isGameOver() {
   if (p1RoundsWon > 5 || p2Points < 10) {
+    p1RoundsWon += 1;
     gameWinner = p1;
     p1Points += jackpot;
     highScore = p1Points;
     jackpot = 0;
-    jackpotDisplay.innerHTML = "Game Over";
+    jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
     p1Score.innerHTML = `Points: ${p1Points + jackpot}`;
-    gameHeader.innerHTML = `${p1} wins the pot!`;
-
+    gameHeader.innerHTML = `${p1} Wins the pot!`;
   } else if (p2RoundsWon > 5 || p1Points < 10) {
+    p2RoundsWon += 1;
     gameWinner = p2;
     p2Points += jackpot;
     highScore = p2Points;
     jackpot = 0;
-    jackpotDisplay.innerHTML = "Game Over";
+    jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
     p2Score.innerHTML = `Points: ${p2Points + jackpot}`;
-    gameHeader.innerHTML = `${p2} wins the pot!`;
+    gameHeader.innerHTML = `${p2} Wins the pot!`;
   } else {
     round += 1;
     playButtonDisable();
-    pcPlay();
+
   }
 }
 
@@ -197,18 +216,9 @@ function scoreBoard() {
   if (roundWinner === p1) {
     p1Row.appendChild(document.createElement("div"))
     .className = "win";
-    p2Row.appendChild(document.createElement("div"))
-    .className = "lose";
   } else if (roundWinner === p2) {
-    p1Row.appendChild(document.createElement("div"))
-    .className = "lose";
     p2Row.appendChild(document.createElement("div"))
     .className = "win";
-  } else {
-    p1Row.appendChild(document.createElement("div"))
-    .className = "tie";
-    p2Row.appendChild(document.createElement("div"))
-    .className = "tie";
   }
 }
 
@@ -232,8 +242,21 @@ function disableKeys() {
     }
   }
 }
+
+function playersReady () {
+  if (p1BetBox.value === '' || p1GuessBox.value === '') {
+    p1Ready.disabled = true;
+  } else if (p2BetBox.value === '' || p2GuessBox.value === '') {
+    p2Ready.disabled = true;
+  } else {
+    p1Ready.disabled = false;
+    p2Ready.disabled = false;
+  }
+}
+
+// playersReady();
 pcPlay();
 playButton.innerHTML = "Waiting..."
-playButton.disabled = true;
+// playButton.disabled = true;
 disableKeys();
 // });
