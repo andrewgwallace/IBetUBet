@@ -25,6 +25,8 @@ let highScore;
 
 // DOM MANIPULATION
 
+document.querySelector('.p1name').innerHTML = p1;
+document.querySelector('.p2name').innerHTML = p2;
 let jackpotDisplay = document.querySelector('.jackpot');
 jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
 let scoreboard = document.querySelector('.scoreboard');
@@ -48,6 +50,7 @@ let roundDisplay = document.querySelector('.round');
 roundDisplay.innerHTML = `Round: ${round}`;
 let p1Row = document.querySelector('.p1row');
 let p2Row = document.querySelector('.p2row');
+let roundRow = document.querySelector('.roundrow');
 
 // document.addEventListener('DOMContentLoaded', function() {
 // GAME FUNCTIONALITY

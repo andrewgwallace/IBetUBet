@@ -21,28 +21,27 @@
 .roundrow {
   float: left;
   height: 20px;
-  line-height: 20px;
-  text-align: center;
+  width: 100%;
+  /* line-height: 20px; */
 }
 
 .win {
   float: left;
   background-color: green;
   height: 20px;
-  width: 10%
-
+  width: 10%;
 }
 
 .lose {
   float: left;
   background-color: red;
   height: 20px;
-  width: 10%
+  width: 10%;
 }
 
 .tie {
   float: left;
   background-color: yellow;
   height: 20px;
-  width: 10%
+  width: 10%;
 }
