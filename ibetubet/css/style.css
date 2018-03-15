@@ -7,11 +7,14 @@ input:not([type]), input[type=text]:not(.browser-default),input[type=number]:not
   text-align: center;
 }
 
+select {
+  font-size: 28px;
+}
 .scoreboard {
   width: 80%;
   height: 60px;
-  /* margin: 0 auto; */
-  margin-top: 8px;
+  margin: 0 auto;
+  margin-top: 16px;
 }
 
 .p1row {
