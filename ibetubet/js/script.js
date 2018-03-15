@@ -176,7 +176,7 @@ function isGameOver() {
     jackpot = 0;
     jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
     p1Score.innerHTML = `Points: ${p1Points + jackpot}`;
-    gameWinnerBox.innerHTML = `${p1} Wins the pot!`;
+    gameWinnerBox.innerHTML = `${p1} wins the pot!`;
 
   } else if (p2RoundsWon > 5 || p1Points < 10) {
     gameWinner = p2;
@@ -185,7 +185,7 @@ function isGameOver() {
     jackpot = 0;
     jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
     p2Score.innerHTML = `Points: ${p2Points + jackpot}`;
-    gameWinnerBox.innerHTML = `${p2} Wins the pot!`;
+    gameWinnerBox.innerHTML = `${p2} wins the pot!`;
   } else {
     round += 1;
     playButtonDisable();
