@@ -27,7 +27,10 @@
     <!-- Player 1, Center, Player 2 -->
     <div class="row">
       <!-- Player 1 -->
+
       <div class="col s12 m4">
+        <div class="card">
+          <div class="card-content">
         <div class="p1name center"></div>
         <div>
           <p class="p1points center">
@@ -49,12 +52,14 @@
             <button class="btn blue" type="submit" name="p1ready">Ready</button>
           </form>
         </div>
+      </div>
         <div class="scoreboard">
           <div class="p1row">
 
           </div>
         </div>
       </div>
+    </div>
       <!-- Center -->
       <div class="col s12 m4 center">
         <div class="roundReveal">
@@ -74,34 +79,40 @@
         <button class="btn red" type="button" name="play"></button>
       </div>
       <!-- Player 2 -->
-      <div class="col s12 m4">
-        <div class="p2name center"></div>
-        <div>
-          <p class="p2points center">
-            Points:
-          </p>
-        </div>
-        <div>
-          <form class="p2play" action="index.html" method="post">
-            <label for="p2bet">I Bet</label>
-            <input class="numbox" type="number" name="p2bet" min="1" max="9">
-            <label>Multiplier</label>
-            <select class="browser-default p2multiplier">
-              <option value="1">1x</option>
-              <option value="2">2x</option>
-              <option value="3">3x</option>
-            </select>
-            <label for="p2guess">U Bet</label>
-            <input class="numbox" type="number" name="p2guess" min="1" max="9">
-            <button class="btn blue" type="button" name="p2ready">Ready</button>
-          </form>
-        </div>
-        <div class="scoreboard">
-          <div class="p2row">
 
+        <div class="col s12 m4">
+                <div class="card">
+                  <div class="card-content">
+          <div class="p2name center"></div>
+          <div>
+            <p class="p2points center">
+              Points:
+            </p>
+          </div>
+          <div>
+            <form class="p2play" action="index.html" method="post">
+              <label for="p2bet">I Bet</label>
+              <input class="numbox" type="number" name="p2bet" min="1" max="9">
+              <label>Multiplier</label>
+              <select class="browser-default p2multiplier">
+                <option value="1">1x</option>
+                <option value="2">2x</option>
+                <option value="3">3x</option>
+              </select>
+              <label for="p2guess">U Bet</label>
+              <input class="numbox" type="number" name="p2guess" min="1" max="9">
+              <button class="btn blue" type="button" name="p2ready">Ready</button>
+            </form>
+          </div>
+        </div>
+          <div class="scoreboard">
+            <div class="p2row">
+
+            </div>
           </div>
         </div>
       </div>
+
     </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
