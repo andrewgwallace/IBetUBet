@@ -66,8 +66,17 @@ let roundRow = document.querySelector('.roundrow');
 
 // document.addEventListener('DOMContentLoaded', function() {
 // GAME FUNCTIONALITY
-function targetClick(event) {
+
+function playButtonEnable() {
+  playButton.innerHTML = "PLAY!"
+  playButton.disabled = false;
+}
+function playButtonDisable() {
+  playButton.innerHTML = "Waiting..."
   playButton.disabled = true;
+}
+
+function targetClick(event) {
   if (event.target.className.includes('numbox')) {
     numbox = event.target;
   }
@@ -94,7 +103,7 @@ function targetClick(event) {
     p2Ready.disabled = true;
   }
   if (p1Ready.disabled === true && p2Ready.disabled === true) {
-    playButton.disabled = false;
+    playButtonEnable();
   }
 }
 
@@ -113,7 +122,6 @@ function findRoundWinner() {
   p1Diff = Math.abs(p1Guess - p2Bet);
   p2Diff = Math.abs(p2Guess - p1Bet);
   if (p1Diff < p2Diff) {
-    // console.log(`${p1} wins with a difference of ${p1Diff}`);
     p1RoundsWon++;
     superTieMultiplier = 2;
     p1Points += (p2Bet * p2Multiplier) - (p1Multiplier * p1Diff);
@@ -121,7 +129,6 @@ function findRoundWinner() {
     jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
     roundWinner = p1;
   } else if (p1Diff > p2Diff) {
-    // console.log(`${p2} wins with a difference of ${p2Diff}`);
     roundWinner = p2;
     p2RoundsWon++;
     superTieMultiplier = 2;
@@ -129,14 +136,12 @@ function findRoundWinner() {
     p1Points -= p1Bet * p1Multiplier;
     jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
   } else if (p1Diff === p2Diff && (p1Guess === p2Bet && p2Guess === p1Bet)) {
-    console.log("Super Tie!");
     roundWinner = 'SUPER TIE!!!';
     p1Points += (p1Bet * p1Multiplier) * superTieMultiplier;
     p2Points += (p2Bet * p2Multiplier) * superTieMultiplier;
     jackpot = jackpot * superTieMultiplier;
     superTieMultiplier++;
   } else {
-    console.log("Tie round");
     roundWinner = "TIE";
     p1Points -= p1Bet * p1Multiplier;
     p2Points -= p2Bet * p2Multiplier;
@@ -181,6 +186,7 @@ function isGameOver() {
   } else {
     showResults();
     round += 1;
+    playButtonDisable();
     pcPlay();
   }
 }
@@ -225,5 +231,7 @@ function disableKeys() {
   }
 }
 pcPlay();
+playButton.innerHTML = "Waiting..."
+playButton.disabled = true;
 disableKeys();
 // });
