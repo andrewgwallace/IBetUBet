@@ -1,8 +1,8 @@
 .scoreboard {
-  border: 1px black solid;
-  width: 50%;
-  height: 40px;
-  float: left;
+  width: 80%;
+  height: 60px;
+  margin: 0 auto;
+  margin-top: 8px;
 }
 
 .p1row {
@@ -26,6 +26,8 @@
 }
 
 .win {
+  border: 2px white solid;
+  border-radius: 4px;
   float: left;
   background-color: green;
   height: 20px;
@@ -33,6 +35,8 @@
 }
 
 .lose {
+  border: 2px white solid;
+  border-radius: 4px;
   float: left;
   background-color: red;
   height: 20px;
@@ -40,6 +44,8 @@
 }
 
 .tie {
+  border: 2px white solid;
+  border-radius: 4px;
   float: left;
   background-color: yellow;
   height: 20px;
@@ -47,3 +53,15 @@
 }
 
 /* Materialize Styling Assignment */
+
+.jackpot {
+  float: right;
+}
+
+.gameheader {
+  float: left;
+}
+
+.round {
+  text-align: center;
+}

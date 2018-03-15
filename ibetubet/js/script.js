@@ -57,7 +57,7 @@ const p2MultiplierBox = document.querySelector('.p2multiplier')
 let p2Ready = document.querySelector('[name="p2ready"]');
 let playButton = document.querySelector('[name="play"]');
 winnerBox = document.querySelector('.winner');
-let gameWinnerBox = document.querySelector('.gamewinner');
+let gameHeader = document.querySelector('.gameheader');
 let roundDisplay = document.querySelector('.round');
 roundDisplay.innerHTML = `Round: ${round}`;
 let p1Row = document.querySelector('.p1row');
@@ -154,12 +154,12 @@ function findRoundWinner() {
 
 function showResults() {
   if (round === 1) {
-    winnerBox.innerHTML = `${p1} was off by ${p1Diff}<br>
-                           ${p2} was off by ${p2Diff}<br>
+    winnerBox.innerHTML = `${p1} bet ${p1Bet} and guessed ${p1Guess}<br>
+                           ${p2} bet ${p2Bet} and guessed ${p2Guess}<br>
                           Round 1 winner: ${roundWinner}`;
   } else {
-    winnerBox.innerHTML = `${p1} was off by ${p1Diff}<br>
-                           ${p2} was off by ${p2Diff}<br>
+    winnerBox.innerHTML = `${p1} bet ${p1Bet} and guessed ${p1Guess}<br>
+                           ${p2} bet ${p2Bet} and guessed ${p2Guess}<br>
                            Round ${round} winner: ${roundWinner}`;
   }
   p1Score.innerHTML = `Points: ${p1Points}`;
@@ -174,18 +174,18 @@ function isGameOver() {
     p1Points += jackpot;
     highScore = p1Points;
     jackpot = 0;
-    jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
+    jackpotDisplay.innerHTML = "Game Over";
     p1Score.innerHTML = `Points: ${p1Points + jackpot}`;
-    gameWinnerBox.innerHTML = `${p1} wins the pot!`;
+    gameHeader.innerHTML = `${p1} wins the pot!`;
 
   } else if (p2RoundsWon > 5 || p1Points < 10) {
     gameWinner = p2;
     p2Points += jackpot;
     highScore = p2Points;
     jackpot = 0;
-    jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
+    jackpotDisplay.innerHTML = "Game Over";
     p2Score.innerHTML = `Points: ${p2Points + jackpot}`;
-    gameWinnerBox.innerHTML = `${p2} wins the pot!`;
+    gameHeader.innerHTML = `${p2} wins the pot!`;
   } else {
     round += 1;
     playButtonDisable();

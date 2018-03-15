@@ -10,82 +10,95 @@
 
 <body>
 
-  <!-- Header -->
-  <h1>I Bet U Bet</h1>
-  <h2 class="jackpot"></h2>
-  <h3 class="round"></h3>
-  <h1 class="gamewinner"></h1>
+  <div class="container">
+    <div class="row header">
+      <h1 class="gameheader">I Bet U Bet</h1>
+      <h2 class="jackpot"></h2>
+    </div>
+    <div class="row">
+      <h3 class="round"></h3>
+    </div>
+    <!-- Player 1, Center, Player 2 -->
+    <div class="row">
+      <!-- Player 1 -->
+      <div class="col s12 m4">
+        <div class="p1name"></div>
+        <div>
+          <p class="p1points">
+            Points:
+          </p>
+        </div>
+        <div>
+          <form class="p1play" action="index.html" method="post">
+            <label for="p1bet">I Bet</label>
+            <input class="numbox" type="number" name="p1bet" min="1" max="9">
+            <label>Multiplier</label>
+            <select class="browser-default p1multiplier">
+              <option value="1">1x</option>
+              <option value="2">2x</option>
+              <option value="3">3x</option>
+            </select>
+            <label for="p1guess">U Bet</label>
+            <input class="numbox" type="number" name="p1guess" min="1" max="9">
+            <button class="btn blue" type="button" name="p1ready">Ready</button>
+          </form>
+        </div>
+      </div>
+      <!-- Center -->
+      <div class="col s12 m4 center">
+        <div class="roundReveal">
+          <p class="winner"></p>
+        </div>
+        <div class="row numbers">
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">1</span>
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">2</span>
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">3</span>
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">4</span>
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">5</span>
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">6</span>
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">7</span>
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">8</span>
+          <span class="btn-floating amber btn-large waves-effect waves-light black-text">9</span>
+        </div>
+        <button class="btn red" type="button" name="play"></button>
+        <div class="scoreboard">
+          <div class="p1row">
 
-  <!-- P1 Side -->
-  <div class="p1name"></div>
-  <div class="p1avatar">
-  </div>
-  <div>
-    <p class="p1points">
-      Points:
-    </p>
-  </div>
-  <div>
-    <form class="p1play" action="index.html" method="post">
-      <label for="p1bet">I Bet</label>
-      <input class="numbox" type="number" name="p1bet" min="1" max="9">
-      <label for="p1guess">U Bet</label>
-      <input class="numbox" type="number" name="p1guess" min="1" max="9">
-    </form>
-  </div>
-  <select class="p1multiplier" type="number">
-      <option value="1">1x</option>
-      <option value="2">2x</option>
-      <option value="3">3x</option>
-    </select>
-  <button class="btn" type="button" name="p1ready">Ready</button>
+          </div>
+          <div class="p2row">
 
-  <!-- Center -->
-
-  <div class="roundReveal">
-    <p class="winner"></p>
-  </div>
-  <button type="button" name="play"></button>
-  <div class="numbers-container">
-    <div class="row numbers">
-      <span class="btn amber lighten-1 black-text">1</span>
-      <span class="btn amber lighten-1 black-text">2</span>
-      <span class="btn amber lighten-1 black-text">3</span>
-      <span class="btn amber lighten-1 black-text">4</span>
-      <span class="btn amber lighten-1 black-text">5</span>
-      <span class="btn amber lighten-1 black-text">6</span>
-      <span class="btn amber lighten-1 black-text">7</span>
-      <span class="btn amber lighten-1 black-text">8</span>
-      <span class="btn amber lighten-1 black-text">9</span>
+          </div>
+          <div class="roundrow">
+          </div>
+        </div>
+      </div>
+      <!-- Player 2 -->
+      <div class="col s12 m4">
+        <div class="p2name"></div>
+        <div>
+          <p class="p2points">
+            Points:
+          </p>
+        </div>
+        <div>
+          <form class="p2play" action="index.html" method="post">
+            <label for="p2bet">I Bet</label>
+            <input class="numbox" type="number" name="p2bet" min="1" max="9">
+            <label>Multiplier</label>
+            <select class="browser-default p2multiplier">
+              <option value="1">1x</option>
+              <option value="2">2x</option>
+              <option value="3">3x</option>
+            </select>
+            <label for="p2guess">U Bet</label>
+            <input class="numbox" type="number" name="p2guess" min="1" max="9">
+            <button class="btn blue" type="button" name="p2ready">Ready</button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-
-  <!-- P2 Side -->
-  <div>
-    <form class="p2play" action="index.html" method="post">
-      <label for="p2bet">I Bet</label>
-      <input class="numbox" type="number" name="p2bet" min="1" max="9">
-      <label for="p2guess">U Bet</label>
-      <input class="numbox" type="number" name="p2guess" min="1" max="9">
-    </form>
-  </div>
-  <select class="p2multiplier" type="number">
-      <option value="1">1x</option>
-      <option value="2">2x</option>
-      <option value="3">3x</option>
-    </select>
-  <button class = "btn" type="button" name="p2ready">Ready</button>
-  <div class="p2name"></div>
-  <div class="p2avatar">
-
-  </div>
-  <div>
-    <p class="p2points">
-      Points:
-    </p>
-  </div>
-
-  <!-- Scoreboard -->
+  <!-- Scoreboard Column -->
   <div class="scoreboard">
     <div class="p1row">
 
@@ -94,7 +107,9 @@
 
     </div>
     <div class="roundrow">
+    </div>
   </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
 
