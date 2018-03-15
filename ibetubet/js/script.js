@@ -96,11 +96,18 @@ function playGame() {
   //insert timeout
 }
 
+function randomNum() {
+    return Math.floor(Math.random()*(9)+1);
+}
+function randomMultiplier() {
+  return Math.floor(Math.random()*(3)+1);
+}
+
 function findRoundWinner() {
-  let p1Diff = Math.abs(p1Guess - p2Bet);
-  let p2Diff = Math.abs(p2Guess - p1Bet);
+  p1Diff = Math.abs(p1Guess - p2Bet);
+  p2Diff = Math.abs(p2Guess - p1Bet);
   if (p1Diff < p2Diff) {
-    console.log(`${p1} wins with a difference of ${p1Diff}`);
+    // console.log(`${p1} wins with a difference of ${p1Diff}`);
     p1RoundsWon++;
     superTieMultiplier = 2;
     p1Points += (p2Bet * p2Multiplier) - (p1Multiplier * p1Diff);
@@ -108,7 +115,7 @@ function findRoundWinner() {
     jackpot += (p1Multiplier * p1Diff) + (p2Multiplier * p2Diff);
     roundWinner = p1;
   } else if (p1Diff > p2Diff) {
-    console.log(`${p2} wins with a difference of ${p2Diff}`);
+    // console.log(`${p2} wins with a difference of ${p2Diff}`);
     roundWinner = p2;
     p2RoundsWon++;
     superTieMultiplier = 2;
@@ -135,9 +142,13 @@ function findRoundWinner() {
 
 function showResults() {
   if (round === 1) {
-    winnerBox.innerHTML = `Round 1 winner: ${roundWinner}`;
+    winnerBox.innerHTML = `${p1} was off by ${p1Diff}<br>
+                           ${p2} was off by ${p2Diff}<br>
+                          Round 1 winner: ${roundWinner}`;
   } else {
-    winnerBox.innerHTML = `Round ${round} winner: ${roundWinner}`;
+    winnerBox.innerHTML = `${p1} was off by ${p1Diff}<br>
+                           ${p2} was off by ${p2Diff}<br>
+                           Round ${round} winner: ${roundWinner}`;
   }
   p1Score.innerHTML = `Points: ${p1Points}`;
   p2Score.innerHTML = `Points: ${p2Points}`;
@@ -203,6 +214,13 @@ function disableKeys() {
       }
     }
   }
+}
+
+if (p2 === "Computer") {
+  p2Bet = randomNum();
+  p2Guess = randomNum();
+  p2Multiplier = randomMultiplier();
+  p2Ready.disabled = true;
 }
 
 disableKeys();

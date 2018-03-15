@@ -5,27 +5,31 @@ startButton.disabled = true;
 
 
 document.addEventListener('DOMContentLoaded', function() {
-onePlayer.addEventListener('change', checkReady);
-twoPlayer.addEventListener('change', checkReady);
+  onePlayer.addEventListener('change', checkReady);
+  twoPlayer.addEventListener('change', checkReady);
 
-function checkReady() {
-  if (onePlayer.value === '' && twoPlayer.value !== '') {
-    onePlayer.value = twoPlayer.value;
-    twoPlayer.value = '';
-    startButton.disabled = false;
-    startButton.innerHTML = "Let's Play!";
-  } else if (onePlayer.value !== '' && twoPlayer.value !== '') {
-    startButton.disabled = false;
-    startButton.innerHTML = "2 Player Start!";
-  } else if (onePlayer.value !== '' && twoPlayer.value === '') {
-    startButton.disabled = false;
-    startButton.innerHTML = "Let's Play!";
-  } else {
-    startButton.disabled = true;
-    startButton.innerHTML = "Enter player name(s)";
+  function checkReady() {
+    if (onePlayer.value === '' && twoPlayer.value !== '') {
+      onePlayer.value = twoPlayer.value;
+      twoPlayer.value = '';
+      startButton.disabled = false;
+      startButton.innerHTML = "Let's Play!";
+    } else if (onePlayer.value !== '' && twoPlayer.value !== '') {
+      startButton.disabled = false;
+      startButton.innerHTML = "2 Player Start!";
+    } else if (onePlayer.value !== '' && twoPlayer.value === '') {
+      startButton.disabled = false;
+      startButton.innerHTML = "Let's Play!";
+    } else {
+      startButton.disabled = true;
+      startButton.innerHTML = "Enter player name(s)";
+    }
+    localStorage.setItem('p1', onePlayer.value);
+    if (twoPlayer.value !== '') {
+      localStorage.setItem('p2', twoPlayer.value);
+    } else {
+      localStorage.setItem('p2', "Computer");
+    }
   }
-  localStorage.setItem('p1', onePlayer.value);
-  localStorage.setItem('p2', twoPlayer.value);
-}
 
 });
