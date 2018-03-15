@@ -22,6 +22,18 @@ let gameWinner = '';
 let roundWinner;
 let numbox;
 let highScore;
+let randomNum = function () {
+    return Math.floor(Math.random()*(9)+1);
+}
+let randomMultiplier = function() {
+  return Math.floor(Math.random()*(3)+1);
+}
+let pcPlay = function() {
+  p2Bet = randomNum();
+  p2Guess = randomNum();
+  p2Multiplier = randomMultiplier();
+  p2Ready.disabled = true;
+}
 
 // DOM MANIPULATION
 
@@ -90,17 +102,11 @@ playButton.addEventListener('click', playGame);
 document.addEventListener('click', targetClick);
 
 function playGame() {
+  pcPlay();
   findRoundWinner();
   isGameOver();
   scoreBoard();
   //insert timeout
-}
-
-function randomNum() {
-    return Math.floor(Math.random()*(9)+1);
-}
-function randomMultiplier() {
-  return Math.floor(Math.random()*(3)+1);
 }
 
 function findRoundWinner() {
@@ -159,8 +165,9 @@ function showResults() {
 function isGameOver() {
   if (p1RoundsWon > 5 || p2Points < 10) {
     gameWinner = p1;
-    highScore = p1Points;
     p1Points += jackpot;
+    highScore = p1Points;
+    jackpot = 0;
     p1Score.innerHTML = `Points: ${p1Points + jackpot}`;
     gameWinnerBox.innerHTML = `${p1} Wins the pot!`;
 
@@ -168,11 +175,13 @@ function isGameOver() {
     gameWinner = p2;
     p2Points += jackpot;
     highScore = p2Points;
+    jackpot = 0;
     p2Score.innerHTML = `Points: ${p2Points + jackpot}`;
     gameWinnerBox.innerHTML = `${p2} Wins the pot!`;
   } else {
     showResults();
     round += 1;
+    pcPlay();
   }
 }
 
@@ -215,13 +224,6 @@ function disableKeys() {
     }
   }
 }
-
-if (p2 === "Computer") {
-  p2Bet = randomNum();
-  p2Guess = randomNum();
-  p2Multiplier = randomMultiplier();
-  p2Ready.disabled = true;
-}
-
+pcPlay();
 disableKeys();
 // });
