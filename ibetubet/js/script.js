@@ -187,7 +187,7 @@ function showResults() {
 }
 
 function isGameOver() {
-  if (p1RoundsWon > 5 || p2Points < 10) {
+  if (p1RoundsWon > 5 || p2Points <= 0) {
     p1RoundsWon += 1;
     gameWinner = p1;
     p1Points += jackpot;
@@ -196,7 +196,7 @@ function isGameOver() {
     jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
     p1Score.innerHTML = `Points: ${p1Points + jackpot}`;
     gameHeader.innerHTML = `${p1} Wins the pot!`;
-  } else if (p2RoundsWon > 5 || p1Points < 10) {
+  } else if (p2RoundsWon > 5 || p1Points <= 0) {
     p2RoundsWon += 1;
     gameWinner = p2;
     p2Points += jackpot;
