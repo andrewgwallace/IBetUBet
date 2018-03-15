@@ -113,8 +113,9 @@ document.addEventListener('click', targetClick);
 function playGame() {
   pcPlay();
   findRoundWinner();
-  isGameOver();
+  showResults();
   scoreBoard();
+  isGameOver();
   //insert timeout
 }
 
@@ -173,6 +174,7 @@ function isGameOver() {
     p1Points += jackpot;
     highScore = p1Points;
     jackpot = 0;
+    jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
     p1Score.innerHTML = `Points: ${p1Points + jackpot}`;
     gameWinnerBox.innerHTML = `${p1} Wins the pot!`;
 
@@ -181,10 +183,10 @@ function isGameOver() {
     p2Points += jackpot;
     highScore = p2Points;
     jackpot = 0;
+    jackpotDisplay.innerHTML = `Jackpot: ${jackpot}`;
     p2Score.innerHTML = `Points: ${p2Points + jackpot}`;
     gameWinnerBox.innerHTML = `${p2} Wins the pot!`;
   } else {
-    showResults();
     round += 1;
     playButtonDisable();
     pcPlay();
