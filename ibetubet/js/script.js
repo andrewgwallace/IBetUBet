@@ -48,14 +48,6 @@ let roundDisplay = document.querySelector('.round');
 roundDisplay.innerHTML = `Round: ${round}`;
 let p1Row = document.querySelector('.p1row');
 let p2Row = document.querySelector('.p2row');
-let loseBox = document.createElement('div');
-let winBox = document.createElement('div');
-let tieBox = document.createElement('div');
-let tieBox2 = document.createElement('div');
-loseBox.className = 'box lose';
-winBox.className = 'box win';
-tieBox.className = 'box tie';
-tieBox2.className = 'box tie';
 
 // document.addEventListener('DOMContentLoaded', function() {
 // GAME FUNCTIONALITY
@@ -69,7 +61,6 @@ function targetClick(event) {
     numbox.value = number;
   }
   if (event.target.name === 'p1ready') {
-    // console.log("AWESOME!");
     event.preventDefault();
     p1Bet = parseFloat(p1BetBox.value);
     p1Guess = parseFloat(p1GuessBox.value);
@@ -79,7 +70,6 @@ function targetClick(event) {
     p1Ready.disabled = true;
   }
   if (event.target.name === 'p2ready') {
-    // console.log("AWESOME!");
     event.preventDefault();
     p2Bet = parseFloat(p2BetBox.value);
     p2Guess = parseFloat(p2GuessBox.value);
@@ -174,14 +164,20 @@ function isGameOver() {
 
 function scoreBoard() {
   if (roundWinner === p1) {
-    p1Row.appendChild(winBox);
-    p2Row.appendChild(loseBox);
+    p1Row.appendChild(document.createElement("div"))
+    .className = "win";
+    p2Row.appendChild(document.createElement("div"))
+    .className = "lose";
   } else if (roundWinner === p2) {
-    p1Row.appendChild(loseBox);
-    p2Row.appendChild(winBox);
+    p1Row.appendChild(document.createElement("div"))
+    .className = "lose";
+    p2Row.appendChild(document.createElement("div"))
+    .className = "win";
   } else {
-    p1Row.appendChild(tieBox);
-    p2Row.appendChild(tieBox2);
+    p1Row.appendChild(document.createElement("div"))
+    .className = "tie";
+    p2Row.appendChild(document.createElement("div"))
+    .className = "tie";
   }
 }
 
@@ -203,7 +199,7 @@ function disableKeys() {
         return false;
       }
     }
-  };
+  }
 }
 
 disableKeys();

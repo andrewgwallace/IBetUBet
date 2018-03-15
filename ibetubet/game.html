@@ -1,95 +1,98 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="css/style.css">
-    <title>I Bet U Bet</title>
-  </head>
-  <body>
 
-    <!-- Header -->
-    <h1>I Bet U Bet</h1>
-    <h2 class="jackpot"></h2>
-    <h3 class="round"></h3>
-    <h1 class="gamewinner"></h1>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="css/style.css">
+  <title>I Bet U Bet</title>
+</head>
 
-    <!-- P1 Side -->
-    <div class="p1avatar">
-    </div>
-    <div>
-      <p class="p1points">
-        Points:
-      </p>
-    </div>
-    <div>
-      <form class="p1play" action="index.html" method="post">
-        <label for="p1bet">I Bet</label>
-        <input class="numbox" type="number" name="p1bet" min="1" max="9">
-        <label for="p1guess">U Bet</label>
-        <input class="numbox" type="number" name="p1guess" min="1" max="9">
-      </form>
-    </div>
-    <select class="p1multiplier" type="number">
-      <option value=1>1x</option>
-      <option value=2>2x</option>
-      <option value=3>3x</option>
-    </select>
-    <button type="button" name="p1ready">Ready</button>
+<body>
 
-    <!-- Center -->
+  <!-- Header -->
+  <h1>I Bet U Bet</h1>
+  <h2 class="jackpot"></h2>
+  <h3 class="round"></h3>
+  <h1 class="gamewinner"></h1>
 
-    <div class="roundReveal">
-      <h1 class="winner"></h1>
-    </div>
-    <button type="button" name="play">GO!</button>
-    <div class="numbers-container">
-      <div class="row numbers">
-          <span>1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>5</span>
-          <span>6</span>
-          <span>7</span>
-          <span>8</span>
-          <span>9</span>
-      </div>
-    </div>
-
-    <!-- P2 Side -->
-    <div>
-      <form class="p2play" action="index.html" method="post">
-        <label for="p2bet">I Bet</label>
-        <input class="numbox" type="number" name="p2bet" min="1" max="9">
-        <label for="p2guess">U Bet</label>
-        <input class="numbox" type="number" name="p2guess" min="1" max="9">
-      </form>
-    </div>
-    <select class="p2multiplier" type="number">
+  <!-- P1 Side -->
+  <div class="p1avatar">
+  </div>
+  <div>
+    <p class="p1points">
+      Points:
+    </p>
+  </div>
+  <div>
+    <form class="p1play" action="index.html" method="post">
+      <label for="p1bet">I Bet</label>
+      <input class="numbox" type="number" name="p1bet" min="1" max="9">
+      <label for="p1guess">U Bet</label>
+      <input class="numbox" type="number" name="p1guess" min="1" max="9">
+    </form>
+  </div>
+  <select class="p1multiplier" type="number">
       <option value="1">1x</option>
       <option value="2">2x</option>
       <option value="3">3x</option>
     </select>
-    <button type="button" name="p2ready">Ready</button>
-    <div class="p2avatar">
+  <button type="button" name="p1ready">Ready</button>
+
+  <!-- Center -->
+
+  <div class="roundReveal">
+    <h1 class="winner"></h1>
+  </div>
+  <button type="button" name="play">GO!</button>
+  <div class="numbers-container">
+    <div class="row numbers">
+      <span>1</span>
+      <span>2</span>
+      <span>3</span>
+      <span>4</span>
+      <span>5</span>
+      <span>6</span>
+      <span>7</span>
+      <span>8</span>
+      <span>9</span>
+    </div>
+  </div>
+
+  <!-- P2 Side -->
+  <div>
+    <form class="p2play" action="index.html" method="post">
+      <label for="p2bet">I Bet</label>
+      <input class="numbox" type="number" name="p2bet" min="1" max="9">
+      <label for="p2guess">U Bet</label>
+      <input class="numbox" type="number" name="p2guess" min="1" max="9">
+    </form>
+  </div>
+  <select class="p2multiplier" type="number">
+      <option value="1">1x</option>
+      <option value="2">2x</option>
+      <option value="3">3x</option>
+    </select>
+  <button type="button" name="p2ready">Ready</button>
+  <div class="p2avatar">
+
+  </div>
+  <div>
+    <p class="p2points">
+      Points:
+    </p>
+  </div>
+
+  <!-- Scoreboard -->
+  <div class="scoreboard">
+    <div class="p1row">
 
     </div>
-    <div>
-      <p class="p2points">
-        Points:
-      </p>
-    </div>
-
-    <!-- Scoreboard -->
-    <div class="scoreboard">
-      <div class="p1row">
-
-      </div>
     <div class="p2row">
 
     </div>
-    <div class="roundrow">
-    </div>
-    <script type="text/javascript" src="js/script.js"></script>
-  </body>
+    <!-- <div class="roundrow"> -->
+  </div>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+
 </html>
