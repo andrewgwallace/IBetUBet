@@ -254,9 +254,7 @@ function playersReady () {
   }
 }
 
-// playersReady();
 pcPlay();
 playButton.innerHTML = "Waiting..."
-// playButton.disabled = true;
 disableKeys();
 // });

@@ -2,8 +2,9 @@ h1, h2, h3 {
   font-family: 'Pacifico', cursive;
 }
 
-input:not([type]), input[type=text]:not(.browser-default) {
+input:not([type]), input[type=text]:not(.browser-default),input[type=number]:not(.browser-default) {
   font-size: 32px;
+  text-align: center;
 }
 
 .scoreboard {
